@@ -4,9 +4,14 @@ import 'semantic-ui-css/semantic.min.css';
 import './app/layout/styles.css';
 import App from './app/layout/App.jsx';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 function render(){
-  ReactDOM.render(<App />, document.getElementById('root'));
+  ReactDOM.render(
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>, 
+  document.getElementById('root'));
 }
 
 if(module.hot){
