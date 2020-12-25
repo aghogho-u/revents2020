@@ -1,23 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'semantic-ui-css/semantic.min.css';
-import './app/layout/styles.css';
-import App from './app/layout/App.jsx';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import "semantic-ui-css/semantic.min.css";
+import "./app/layout/styles.css";
+import App from "./app/layout/App.jsx";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { configureStore } from "./app/store/configueStore";
+import ScrollToTop from "./app/layout/ScrollToTop";
 
-function render(){
+const store = configureStore()
+
+
+function render() {
   ReactDOM.render(
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>, 
-  document.getElementById('root'));
+    <Provider store = {store}>
+      <BrowserRouter>
+      <ScrollToTop />
+        <App />
+      </BrowserRouter>
+    </Provider>,
+    document.getElementById("root")
+  );
 }
 
-if(module.hot){
-  module.hot.accept('./app/layout/App.jsx', function(){
+if (module.hot) {
+  module.hot.accept("./app/layout/App.jsx", function () {
     setTimeout(render);
-  })
+  });
 }
 
 render();

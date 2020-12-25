@@ -12,7 +12,7 @@ export default function NavBar({setFormOpen}){
         setAuthenticated(false);
         history.push("/");
     }
-    
+
     return (
         <Menu inverted fixed="top">
             <Container>
@@ -21,6 +21,7 @@ export default function NavBar({setFormOpen}){
                     Re-events
                 </Menu.Item>
                 <Menu.Item as={NavLink} exact to="/Events" name="Events" />
+                <Menu.Item as={NavLink} exact to="/Sandbox" name="Sandbox" />
                 {authenticated && 
                 <Menu.Item as={NavLink} exact to="/createEvent">
                     <Button  positive inverted content="Create Event" />
