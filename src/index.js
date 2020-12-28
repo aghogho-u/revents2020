@@ -9,14 +9,13 @@ import { Provider } from "react-redux";
 import { configureStore } from "./app/store/configueStore";
 import ScrollToTop from "./app/layout/ScrollToTop";
 
-const store = configureStore()
-
+const store = configureStore();
 
 function render() {
   ReactDOM.render(
-    <Provider store = {store}>
+    <Provider store={store}>
       <BrowserRouter>
-      <ScrollToTop />
+        <ScrollToTop />
         <App />
       </BrowserRouter>
     </Provider>,
