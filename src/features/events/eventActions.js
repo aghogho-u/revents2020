@@ -16,6 +16,13 @@ export function loadEvents(){
     }
 }
 
+export function listenToEvent(events) {
+    return {
+        type: FETCH_EVENTS,
+        payload: events
+    }
+}
+
 export function createEvent(event) {
     return {
         type: CREATE_EVENT,

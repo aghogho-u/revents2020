@@ -28,6 +28,8 @@ const validationSchema = Yup.object({
   date: Yup.string().required(),
 });
 
+
+
 export default function EventForm({ match, history }) {
   const dispatch = useDispatch();
   const selectedEvent = useSelector((state) =>
