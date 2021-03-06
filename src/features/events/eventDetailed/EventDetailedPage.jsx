@@ -22,10 +22,10 @@ export default function EventDetailedPage({ match }) {
   });
 
   if (loading || (!event && !error)) return <LoadingComponent content='Loading event ...' />;
-//   if (error) {
-//       console.log(error);
-//       return <Redirect to='/error' />;
-//   } 
+  if (error) {
+      console.log(error);
+      return <Redirect to='/error' />;
+  } 
 
   return (
     <Grid>

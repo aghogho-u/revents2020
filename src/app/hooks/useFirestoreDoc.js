@@ -10,14 +10,14 @@ export default function useFirestoreDoc({query, data, deps}) {
         dispatch(asyncActionStart());
         const unsubscribe = query().onSnapshot(
             snapshot => {
-                if(!snapshot.exits){
-                    dispatch(asyncActionError({code:'Not-found', message:'Couldn\'t find data'}))
+                if(!snapshot.exists){
+                    dispatch(asyncActionError({code:'Not-found', message:'Could not find data'}))
                     return;
                 }
                 data(dataFromSnapshot(snapshot));
                 dispatch(asyncActionFinish());
             },
-            error => dispatch(asyncActionError(error))
+            error => dispatch(asyncActionError())
         );
         return () => {
             unsubscribe()
