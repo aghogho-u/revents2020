@@ -15,6 +15,7 @@ export default function EventDetailedPage({ match }) {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.event.events.find((e) => e.id === match.params.id));
   const { loading, error } = useSelector((state) => state.async);
+
   useFirestoreDoc({
     query: () => listenToEventFromFirestore(match.params.id),
     data: (event) => dispatch(listenToEvent([event])),
@@ -22,10 +23,8 @@ export default function EventDetailedPage({ match }) {
   });
 
   if (loading || (!event && !error)) return <LoadingComponent content='Loading event ...' />;
-  if (error) {
-      console.log(error);
-      return <Redirect to='/error' />;
-  } 
+  if (error) return <Redirect to='/error' />;
+  
 
   return (
     <Grid>
