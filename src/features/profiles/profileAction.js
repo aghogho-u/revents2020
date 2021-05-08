@@ -1,4 +1,4 @@
-import { LISTEN_TO_CURRENT_USER_PROFILE, LISTEN_TO_SELECTED_USER_PROFILE } from "./profileConstant"
+import { LISTEN_TO_CURRENT_USER_PROFILE, LISTEN_TO_SELECTED_USER_PROFILE, LISTEN_TO_USER_PHOTOS } from "./profileConstant"
 
 export function listenToCurrentUserProfile(profile){
     return {
@@ -14,4 +14,11 @@ export function listenToSelectedUserProfile(profile){
             payload: profile
         }
     
+}
+
+export function listenToUserPhotos(photos){
+    return {
+        type: LISTEN_TO_USER_PHOTOS,
+        payload: photos
+    }
 }
