@@ -13,11 +13,11 @@ export default function EventListItem({event}){
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" circular src={event.hostPhotoURL} />
+                        <Item.Image size="tiny" circular src={event.hostPhotoURL} as={Link} to={`/profile/${event.hostUid}`} />
                         <Item.Content>
                             <Item.Header content={event.title} />
-                            <Item.Description> 
-                                Hosted by {event.hostedBy}
+                            <Item.Description  > 
+                                Hosted by <Link to={`/profile/${event.hostUid}`}> {event.hostedBy}</Link>
                             </Item.Description>
                             {event.isCancelled && (
                                 <Label 
