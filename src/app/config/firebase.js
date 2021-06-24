@@ -7,6 +7,7 @@ import 'firebase/storage';
 const firebaseConfig = {
     apiKey: "AIzaSyDQoXmOXaTORUHi8kZ0Z_oNVupB7ehcwiM",
     authDomain: "revent2020.firebaseapp.com",
+    databaseURL: "https://revent2020-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "revent2020",
     storageBucket: "revent2020.appspot.com",
     messagingSenderId: "40610506233",

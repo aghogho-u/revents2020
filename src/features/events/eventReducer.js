@@ -1,13 +1,16 @@
 //import {sampleData} from '../../app/api/sampleData'
 import {
+  CANCEL_CHAT,
   CREATE_EVENT,
   DELETE_EVENT,
   FETCH_EVENTS,
+  LISTEN_TO_EVENT_CHAT,
   UPDATE_EVENT,
 } from "./eventsConstants";
 
 const initialState = {
-    events: []
+    events: [],
+    comments: []
 };
 
 export default function eventReducer(
@@ -47,6 +50,17 @@ export default function eventReducer(
           ),
         ],
       };
+
+      case LISTEN_TO_EVENT_CHAT:
+        return {
+          ...state,
+          comments: payload
+        }
+        case CANCEL_CHAT:
+          return {
+            ...state,
+            comments: []
+          }
     default:
       return state;
   }

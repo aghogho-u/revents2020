@@ -16,8 +16,8 @@ export default function EventDetailedPage({ match }) {
   const {currentUser} = useSelector(state => state.auth);
   const event = useSelector((state) => state.event.events.find((e) => e.id === match.params.id));
   const { loading, error } = useSelector((state) => state.async);
-  const isHost = event?.hostUid === currentUser.uid;
-  const isGoing = event?.attendees?.some(a => a.id === currentUser.uid);
+  const isHost = event?.hostUid === currentUser?.uid;
+  const isGoing = event?.attendees?.some(a => a.id === currentUser?.uid);
 
   useFirestoreDoc({
     query: () => listenToEventFromFirestore(match.params.id),
@@ -33,7 +33,7 @@ export default function EventDetailedPage({ match }) {
     <Grid>
       <Grid.Column width={10}>
         <EventDetailedHeader event={event} isGoing={isGoing} isHost={isHost} />
-        <EventDetailedChat />
+        <EventDetailedChat eventId={event.id} />
         <EventDetailedInfo event={event} />
       </Grid.Column>
       <GridColumn width={6}>
