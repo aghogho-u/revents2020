@@ -18,7 +18,7 @@ export function signOutFirebase(){
 
 export async function registerInFirebase(creds){
    try{
-    const result = await firebase.auth().signInWithEmailAndPassword(creds.email, creds.password);
+    const result = await firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password);
      await result.user.updateProfile({
         displayName: creds.displayName,
     })
@@ -85,5 +85,5 @@ export function getEventChatRef(eventId){
 
 export function getEventFeedRef(){
     const user = firebase.auth().currentUser;
-    return firebase.database().ref(`posts/${user.uid}`).orderByKey().limitToLast(5);
+    return firebase.database().ref(`posts/${user?.uid}`).orderByKey().limitToLast(5);
 }

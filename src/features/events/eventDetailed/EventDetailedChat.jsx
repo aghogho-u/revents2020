@@ -12,6 +12,7 @@ import { createDataTree } from '../../../app/common/util/util';
 export default function EventDetailedChat({ eventId }) {
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.event);
+  const {authenticated } = useSelector(state => state.auth);
   const [showReplyForm, setShowReplyForm] = useState({ open: false, commentId: null });
 
   function handleCloseReply() {
@@ -32,9 +33,9 @@ export default function EventDetailedChat({ eventId }) {
   return (
     <>
       <Segment textAlign='center' attached='top' inverted color='teal' style={{ border: 'none' }}>
-        <Header>Chat about this event</Header>
+        <Header>{authenticated ? 'Chat about this event' : 'Sign in to view and comment'}</Header>
       </Segment>
-
+{authenticated &&
       <Segment attached>
         <EventDetailedChatForm eventId={eventId} parentId={0} closeForm={setShowReplyForm} />
         {createDataTree(comments).map((comment) => (
@@ -114,7 +115,7 @@ export default function EventDetailedChat({ eventId }) {
             </Comment>
           </Comment.Group>
         ))}
-      </Segment>
+      </Segment>}
     </>
   );
 }

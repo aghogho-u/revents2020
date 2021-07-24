@@ -6,10 +6,11 @@ import 'react-calendar/dist/Calendar.css'
 import "./app/layout/styles.css";
 import App from "./app/layout/App.jsx";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+//import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { configureStore } from "./app/store/configueStore";
+import { configureStore, history } from "./app/store/configueStore";
 import ScrollToTop from "./app/layout/ScrollToTop";
+import { ConnectedRouter } from "connected-react-router";
 
 
 const store = configureStore();
@@ -18,10 +19,10 @@ const store = configureStore();
 function render() {
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <ScrollToTop />
         <App />
-      </BrowserRouter>
+      </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
   );

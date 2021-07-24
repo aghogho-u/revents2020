@@ -4,6 +4,8 @@ import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
 import { addUserAttendance, cancelUserAttendance } from '../../../app/firestore/firestoreService';
+import { useSelector } from 'react-redux';
+import UnauthModal from '../../auth/UnauthModal';
 
 const eventImageStyle = {
   filter: 'brightness(30%)',
@@ -20,6 +22,8 @@ const eventImageTextStyle = {
 
 export default function EventDetailedHeader({ event, isGoing, isHost }) {
     const [loading, setLoading] = useState(false);
+    const { authenticated } = useSelector(state => state.auth);
+    const [modalOpen, setModalOpen ] = useState(false);
     
     async function handleUserJoinEvent(){
         setLoading(true);
@@ -44,6 +48,9 @@ export default function EventDetailedHeader({ event, isGoing, isHost }) {
     }
 
   return (
+    <>
+    {modalOpen && <UnauthModal setModalOpen={setModalOpen}  />}
+    
     <Segment.Group>
       <Segment basic attached='top' style={{ padding: '0' }}>
         <Image src={`/assets/categoryImages/${event.category}.jpg`} fluid style={eventImageStyle} />
@@ -69,7 +76,7 @@ export default function EventDetailedHeader({ event, isGoing, isHost }) {
             {isGoing ? (
               <Button loading={loading} onClick={handleCancelJoinEvent} >Cancel My Place</Button>
             ) : (
-              <Button loading={loading} onClick={handleUserJoinEvent} color='teal'>JOIN THIS EVENT</Button>
+              <Button loading={loading} onClick={authenticated ? handleUserJoinEvent : ()=>setModalOpen(true)} color='teal'>JOIN THIS EVENT</Button>
             )}
           </>
         )}
@@ -81,5 +88,6 @@ export default function EventDetailedHeader({ event, isGoing, isHost }) {
         )}
       </Segment>
     </Segment.Group>
+    </>
   );
 }

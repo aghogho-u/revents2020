@@ -5,7 +5,7 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDQoXmOXaTORUHi8kZ0Z_oNVupB7ehcwiM",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "revent2020.firebaseapp.com",
     databaseURL: "https://revent2020-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "revent2020",

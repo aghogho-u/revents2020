@@ -1,10 +1,13 @@
 import React from 'react';
 import { Header, Menu } from 'semantic-ui-react';
 import Calendar from 'react-calendar';
+import { useSelector } from 'react-redux';
 
 export default function EventFilters({ predicate, setPredicate, loading }) {
+  const {authenticated } = useSelector(state => state.auth)
   return (
     <>
+    {authenticated && 
       <Menu vertical size='large' style={{ width: '100%' }}>
         <Header icon='filter' attached color='teal' content='Filters' />
         <Menu.Item
@@ -25,7 +28,7 @@ export default function EventFilters({ predicate, setPredicate, loading }) {
           onClick={() => setPredicate('filter', 'isHosting')}
           disabled={loading}
         />
-      </Menu>
+      </Menu>}
       <Header icon='calendar' attached color='teal' content='Select date' />
       <Calendar
         onChange={(date) => setPredicate('startDate', date)}
