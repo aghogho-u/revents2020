@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css'
 import "./app/layout/styles.css";
 import App from "./app/layout/App.jsx";
 import reportWebVitals from "./reportWebVitals";
+import * as serviceWorker from './serviceWorker';
 //import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore, history } from "./app/store/configueStore";
@@ -39,4 +40,6 @@ render();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+serviceWorker.register();
+
 reportWebVitals();
